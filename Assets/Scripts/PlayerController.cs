@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed;
+    public float maxSpeed;
     public WheelJoint2D leftWheel;
     public WheelJoint2D rightWheel;
 
@@ -20,11 +21,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKey(KeyCode.D))
         {
             //rb.AddForce(transform.right * speed * Time.deltaTime
             var MyNewMotor = new JointMotor2D();
             MyNewMotor.motorSpeed = rightWheel.motor.motorSpeed + speed * Time.deltaTime;
+
+            if (MyNewMotor.motorSpeed > maxSpeed) { 
+                MyNewMotor.motorSpeed= maxSpeed;
+            }
+            print(MyNewMotor.motorSpeed);
+
             MyNewMotor.maxMotorTorque = 10000;
             leftWheel.motor = MyNewMotor;
             rightWheel.motor = MyNewMotor;
