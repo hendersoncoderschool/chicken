@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         
         if (Input.GetKey(KeyCode.D))
         {
@@ -31,7 +36,7 @@ public class PlayerController : MonoBehaviour
             if (MyNewMotor.motorSpeed > maxSpeed) { 
                 MyNewMotor.motorSpeed= maxSpeed;
             }
-            print(MyNewMotor.motorSpeed);
+            //print(MyNewMotor.motorSpeed);
 
             MyNewMotor.maxMotorTorque = 10000;
             leftWheel.motor = MyNewMotor;

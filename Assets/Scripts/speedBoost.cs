@@ -19,9 +19,11 @@ public class speedBoost : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.name == "Body")
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(strength, 0), ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(collision.gameObject.transform.right * strength, ForceMode2D.Impulse);
+            print(collision.gameObject.transform.right * strength);
+            print(collision.gameObject.name);
 
         }
     }
