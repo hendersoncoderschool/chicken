@@ -6,6 +6,7 @@ public class coin : MonoBehaviour
 
 {
     public GameManager gameManager;
+    private bool collected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,11 @@ public class coin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !collected)
         {
+            collected = true;
             gameManager.coins++;
+            gameManager.coinText.text = "Coin : " + gameManager.coins.ToString();
             Destroy(gameObject);
 
         }
